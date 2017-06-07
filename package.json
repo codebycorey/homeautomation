@@ -9,12 +9,16 @@
   },
   "scripts": {
     "clean": "rm -rf ./dist",
-    "start": "node bin/server.js",
-    "tsc": "tsc",
-    "build": "npm run clean && npm run lint && npm run tsc",
-    "watch": "nodemon -e ts -w aeonian -x 'npm run build'",
-    "prelint": "tslint --fix './aeonian/**/*.ts'",
+
     "lint": "tslint './aeonian/**/*.ts'",
+    "lint:fix": "tslint --fix './aeonian/**/*.ts'",
+    "lint:both": "npm run lint:fix && npm run lint",
+
+    "prebuild": "npm run clean && npm run lint:both",
+    "build": "tsc",
+
+    "dev": "nodemon -e ts -w aeonian -x 'npm run build && npm start'",
+    "start": "node bin/server.js",
     "test": "npm run lint"
   },
   "repository": {
