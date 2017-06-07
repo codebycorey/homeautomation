@@ -1,4 +1,5 @@
 # Aeonian Home Automation
+[![Build Status](https://travis-ci.org/rcodonnell/Aeonian.svg?branch=master)](https://travis-ci.org/rcodonnell/Aeonian)
 
 Application used for home automation.
 
