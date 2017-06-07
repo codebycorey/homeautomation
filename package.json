@@ -1,0 +1,35 @@
+{
+  "name": "aeonian",
+  "version": "0.0.1",
+  "description": "Aeonian Home Automation",
+  "main": "./bin/server.js",
+  "engines": {
+    "node": ">=8.0.0",
+    "npm": ">=5.0.0"
+  },
+  "scripts": {
+    "start": "node bin/server.js",
+    "tsc:w": "tsc -w",
+    "watch": "npm run tsc:w",
+    "lint": "tslint './aeonian/**/*.ts'",
+    "test": "npm run lint"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rcodonnell/Aeonian.git"
+  },
+  "author": "Corey O'Donnell <rcodonnell>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/rcodonnell/Aeonian/issues"
+  },
+  "homepage": "https://github.com/rcodonnell/Aeonian#readme",
+  "dependencies": {
+    "@types/lodash": "^4.14.65",
+    "lodash": "^4.17.4"
+  },
+  "devDependencies": {
+    "tslint": "^5.4.3",
+    "typescript": "^2.3.4"
+  }
+}
