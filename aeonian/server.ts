@@ -19,10 +19,20 @@ export class Server {
     }
 
     public config(): void {
+        this.app.use(express.static(__dirname));
         useExpressServer(this.app, {
             controllers: [TestController]
         });
     }
 }
+
+// Patch Console
+import consoleStamp = require('console-stamp');
+consoleStamp(console, {
+    colors: {
+        stamp: 'green',
+        label: 'white'
+    }
+});
 
 Server.bootstrap();
