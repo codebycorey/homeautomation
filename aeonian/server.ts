@@ -1,16 +1,28 @@
-import * as _ from 'lodash';
+import * as express from 'express';
 import 'reflect-metadata';
-import {createExpressServer} from 'routing-controllers';
-import {UserController} from './tmpController';
+import {useExpressServer} from 'routing-controllers';
+import {TestController} from './tmpController';
 
-const hell: string = 'Hello world!';
+export class Server {
+    public app: express.Application;
 
-if (!_.isEmpty(hell)) {
-    console.log(hell);
+    public static bootstrap(): Server {
+        return new Server();
+    }
+
+    constructor() {
+        this.app = express();
+
+        this.config();
+
+        this.app.listen(process.env.PORT || 3000);
+    }
+
+    public config(): void {
+        useExpressServer(this.app, {
+            controllers: [TestController]
+        });
+    }
 }
 
-const app = createExpressServer({
-    controllers: [UserController]
-});
-
-app.listen(3000);
+Server.bootstrap();

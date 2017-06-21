@@ -1,10 +1,10 @@
 import {Controller, Get} from "routing-controllers";
 
 @Controller()
-export class UserController {
+export class TestController {
 
-    @Get("/users")
+    @Get("/test")
     public getAll(): string {
-       return "This action returns all users";
+       return "This action returns all test data";
     }
 }
