@@ -2,7 +2,7 @@
   "name": "aeonian",
   "version": "0.0.1",
   "description": "Aeonian Home Automation",
-  "main": "./bin/server.js",
+  "main": "./dist/server.js",
   "engines": {
     "node": ">=8.0.0",
     "npm": ">=5.0.0"
@@ -13,9 +13,9 @@
     "lint:fix": "tslint --fix './aeonian/**/*.ts'",
     "lint:both": "npm run lint:fix && npm run lint",
     "prebuild": "npm run clean && npm run lint:both",
-    "build": "tsc",
-    "dev": "nodemon -e ts -w aeonian -x 'npm run build && npm start'",
-    "start": "node bin/server.js",
+    "build": "tsc -p ./aeonian/server",
+    "dev": "nodemon -e ts -w aeonian -x 'npm run build && npm run ui && npm start'",
+    "start": "node dist/server/server.js",
     "test": "npm run lint",
     "ui": "npm run webpack -- --config webpack.config.js --progress --profile",
     "webpack": "node node_modules/webpack/bin/webpack.js"

@@ -3,8 +3,7 @@
   "compilerOptions": {
     "module": "commonjs",
     "target": "es6",
-    "rootDir": "./aeonian/",
-    "outDir": "./dist/",
+    "outDir": "../../dist/server",
     "sourceMap": true,
     "noImplicitAny": true,
     "noImplicitReturns": true,
@@ -16,9 +15,5 @@
     "noFallthroughCasesInSwitch": true,
     "suppressImplicitAnyIndexErrors": true,
     "removeComments": true
-  },
-  "exclude": [
-    "dist",
-    "node_modules"
-  ]
+  }
 }

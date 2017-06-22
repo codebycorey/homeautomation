@@ -1,4 +1,5 @@
 import * as express from 'express';
+import * as path from 'path';
 import 'reflect-metadata';
 import {useExpressServer} from 'routing-controllers';
 import {TestController} from './tmpController';
@@ -19,7 +20,8 @@ export class Server {
     }
 
     public config(): void {
-        this.app.use(express.static(__dirname));
+        console.log('directory', path.resolve(__dirname, '..', 'public'));
+        this.app.use(express.static(path.resolve(__dirname, '..', 'public')));
         useExpressServer(this.app, {
             controllers: [TestController]
         });

@@ -8,14 +8,14 @@ const htmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
     output: {
-        path: path.resolve(__dirname, 'dist'),
+        path: path.resolve(__dirname, 'dist', 'public'),
         filename: '[name].bundle.js',
         sourceMapFilename: '[file].map',
         chunkFilename: '[id].chunk.js',
     },
     entry: {
-        'polyfills': './aeonian/UI/polyfills.ts',
-        'main': './aeonian/UI/main.ts'
+        'polyfills': './aeonian/client/polyfills.ts',
+        'main': './aeonian/client/main.ts'
     },
     resolve: {
         extensions: [
@@ -25,11 +25,18 @@ module.exports = {
     module: {
         rules: [{
             test: /\.ts$/,
-            use: ['awesome-typescript-loader', 'angular2-template-loader']
+            use: [{
+                loader: 'awesome-typescript-loader',
+                options: {
+                    configFileName: 'aeonian/client/tsconfig.webpack.json'
+                }
+            }, {
+                loader: 'angular2-template-loader'
+            }]
         }, {
             test: /\.html$/,
             use: 'raw-loader',
-            exclude: [path.resolve(__dirname, 'Aeonian', 'UI', 'index.html')]
+            exclude: [path.resolve(__dirname, 'Aeonian', 'client', 'index.html')]
         }, {
             test: /\.css$/,
             use: ['to-string-loader', 'css-loader']
@@ -51,7 +58,7 @@ module.exports = {
             prefetch: [/chunk/]
         }),
         new htmlWebpackPlugin({
-            template: 'aeonian/UI/index.html',
+            template: 'aeonian/client/index.html',
             chuncksSortMode: 'dependency',
             inject: 'body'
         })
