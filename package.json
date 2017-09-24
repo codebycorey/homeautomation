@@ -10,7 +10,7 @@
     "prebuild": "npm run clean && npm run lint:fix",
     "build": "tsc -p ./src/server",
     "build:watch": "nodemon -e ts -w aeonian -x 'npm run build'",
-    "start": "node dist/server/server.js",
+    "start": "node dist/server.js",
     "test": "npm run lint"
   },
   "repository": {
@@ -23,8 +23,11 @@
     "url": "https://github.com/rcodonnell/homeautomation/issues"
   },
   "homepage": "https://github.com/rcodonnell/homeautomation#readme",
-  "dependencies": {},
+  "dependencies": {
+    "hapi": "^16.6.0"
+  },
   "devDependencies": {
+    "@types/hapi": "^16.1.9",
     "nodemon": "^1.12.1",
     "tslint": "^5.7.0",
     "typescript": "^2.5.2"
