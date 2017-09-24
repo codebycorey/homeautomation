@@ -4,7 +4,14 @@
   "description": "Home Automation",
   "main": "dist/server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 0"
+    "clean": "rm -rf ./dist",
+    "lint": "tslint './src/**/*.ts'",
+    "lint:fix": "tslint --fix './src/**/*.ts'",
+    "prebuild": "npm run clean && npm run lint:fix",
+    "build": "tsc -p ./src/server",
+    "build:watch": "nodemon -e ts -w aeonian -x 'npm run build'",
+    "start": "node dist/server/server.js",
+    "test": "npm run lint"
   },
   "repository": {
     "type": "git",
@@ -15,5 +22,11 @@
   "bugs": {
     "url": "https://github.com/rcodonnell/homeautomation/issues"
   },
-  "homepage": "https://github.com/rcodonnell/homeautomation#readme"
+  "homepage": "https://github.com/rcodonnell/homeautomation#readme",
+  "dependencies": {},
+  "devDependencies": {
+    "nodemon": "^1.12.1",
+    "tslint": "^5.7.0",
+    "typescript": "^2.5.2"
+  }
 }
