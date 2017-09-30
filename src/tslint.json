@@ -1,21 +1,18 @@
 {
   "extends": "tslint:recommended",
   "rules": {
-    "ban": true,
+    "ban": false,
     "curly": true,
     "cyclomatic-complexity": [true, 20],
     "forin": true,
-    "indent": [true, "spaces", 4],
-    "interface-name": true,
+    "indent": [true, "tabs", 4],
+    "interface-name": false,
     "jsdoc-format": true,
     "label-position": true,
     "linebreak-style": [true, "LF"],
     "max-line-length": [true, 150],
-    "member-ordering": [true,
-      "public-before-private",
-      "static-before-instance",
-      "variables-before-functions"
-    ],
+    "member-ordering": [true, {"order": "statics-first"}],
+    "member-access": [true, "check-accessor", "check-constructor"],
     "no-arg": true,
     "no-bitwise": true,
     "trailing-comma": [true, {
@@ -25,13 +22,16 @@
     "object-literal-sort-keys": false,
     "no-reference": false,
     "no-construct": true,
+    "no-console": false,
     "no-debugger": true,
     "no-default-export": true,
     "no-duplicate-imports": true,
     "no-duplicate-variable": true,
     "no-empty": true,
+    "no-empty-interface": false,
     "no-eval": true,
     "no-irregular-whitespace": true,
+    "no-non-null-assertion": true,
     "no-sparse-arrays": true,
     "no-string-literal": false,
     "no-switch-case-fall-through": true,
@@ -41,7 +41,10 @@
     "no-var-requires": true,
     "one-line": [true,
       "check-open-brace",
-      "check-whitespace"
+      "check-whitespace",
+      "check-finally",
+      "check-catch",
+      "check-else"
     ],
     "object-literal-shorthand": false,
     "prefer-object-spread": true,
@@ -50,9 +53,13 @@
     "triple-equals": [true, "allow-null-check"],
     "typedef": [true,
       "call-signature",
+      "arrow-call-signature",
       "parameter",
       "property-declaration",
-      "member-variable-declaration"
+      "variable-declaration",
+      "member-variable-declaration",
+      "object-destructuring",
+      "array-destructuring"
     ],
     "typedef-whitespace": [true, {
       "call-signature": "nospace",
@@ -66,7 +73,13 @@
       "check-branch",
       "check-decl",
       "check-operator",
-      "check-separator"
+      "check-module",
+      "check-separator",
+      "check-rest-spread",
+      "check-type",
+      "check-typecast",
+      "check-type-operator",
+      "check-preblock"
     ]
   }
 }

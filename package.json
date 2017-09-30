@@ -10,7 +10,7 @@
     "prebuild": "npm run clean && npm run lint:fix",
     "build": "tsc -p ./src/server",
     "build:watch": "nodemon -e ts -w aeonian -x 'npm run build'",
-    "start": "node dist/server.js",
+    "start": "node dist/index.js",
     "test": "npm run lint"
   },
   "repository": {
@@ -24,7 +24,10 @@
   },
   "homepage": "https://github.com/rcodonnell/homeautomation#readme",
   "dependencies": {
-    "hapi": "^16.6.0"
+    "hapi": "^16.6.0",
+    "inversify": "^4.3.0",
+    "inversify-binding-decorators": "^3.0.0",
+    "reflect-metadata": "^0.1.10"
   },
   "devDependencies": {
     "@types/hapi": "^16.1.9",
