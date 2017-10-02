@@ -9,8 +9,8 @@ import './inversify.loader';
 
 import * as Hapi from 'hapi';
 
-import { HomeAutomationType, IHomeAutomation } from './HomeAutomation';
 import { container } from './configs/inversify.config';
+import { HomeAutomationType, IHomeAutomation } from './HomeAutomation';
 
 const homeAutomation: IHomeAutomation = container.get<IHomeAutomation>(HomeAutomationType);
 
