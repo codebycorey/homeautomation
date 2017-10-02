@@ -1,32 +1,33 @@
-import { inject } from './inversify.config';
+import * as Hapi from 'hapi';
+import { inject, Provide } from './configs/inversify.config';
 
-import { IConfigService, ConfigServiceType } from './configurations/ConfigService'
+import { ConfigServiceType, IConfigService, IServerConfig } from './util/ConfigService';
 
-export interface IServerConfig {
-    port: number;
+export const HomeAutomationType: symbol = Symbol('HomeAutomation');
+
+export interface IHomeAutomation {
+    initialize(): Promise<Hapi.Server>;
 }
 
-export class HomeAutomation {
+@Provide(HomeAutomationType)
+export class HomeAutomation implements IHomeAutomation {
 
-    public static init(
-        @inject(ConfigServiceType) configService: IConfigService
-    ): Promise<any> {
-        const homeAutomation: HomeAutomation = new HomeAutomation(configService);
-        return Promise.resolve(homeAutomation.server);
-    }
-
-    private server: any;
-    private config: IServerConfig;
+    private readonly server: Hapi.Server;
+    private readonly configs: IServerConfig;
 
     public constructor(
-        configService: IConfigService
+        @inject(ConfigServiceType) configService: IConfigService
     ) {
-        this.config = configService.getServerConfigs();
-        this.server = {
-            start: (callback: any): void => callback(),
-            info: {
-                uri: `localhost:${this.config.port}`
-            }
-        };
+        this.configs = configService.getServerConfigs();
+        this.server = new Hapi.Server();
+    }
+
+    public async initialize(): Promise<Hapi.Server> {
+        console.log('Initializing...');
+        this.server.connection({
+            port: process.env.PORT || this.configs.port
+        });
+
+        return Promise.resolve(this.server);
     }
 }

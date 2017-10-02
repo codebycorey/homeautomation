@@ -5,22 +5,37 @@
 
 import 'reflect-metadata';
 
-import { HomeAutomation } from './HomeAutomation';
+import './inversify.loader';
+
+import * as Hapi from 'hapi';
+
+import { container } from './configs/inversify.config';
+import { HomeAutomationType, IHomeAutomation } from './HomeAutomation';
+
+const homeAutomation: IHomeAutomation = container.get<IHomeAutomation>(HomeAutomationType);
 
 console.log(`Running enviroment ${process.env.NODE_ENV || 'dev'}`);
 
 // Catch unhandling unexpected exceptions
 process.on('uncaughtException', (error: Error) => {
-	console.error(`uncaughtException ${error.message}`);
+    console.error(`uncaughtException ${error.message}`);
 });
 
 // Catch unhandling rejected promises
 process.on('unhandledRejection', (reason: any) => {
-	console.error(`unhandledRejection ${reason}`);
+    console.error(`unhandledRejection ${reason}`);
 });
 
-HomeAutomation.init().then((server: any) => {
-	server.start(() => {
-		console.log('Server running at:', server.info.uri);
-	});
+homeAutomation.initialize().then((server: Hapi.Server) => {
+    server.start((error) => {
+        if (error) {
+            throw error;
+        }
+
+        let uri: string = 'Unkown';
+        if (server.info && server.info.uri) {
+            uri = server.info.uri;
+        }
+        console.log('Server running at:', uri);
+    });
 });

@@ -5,7 +5,7 @@
     "curly": true,
     "cyclomatic-complexity": [true, 20],
     "forin": true,
-    "indent": [true, "tabs", 4],
+    "indent": [true, "spaces", 4],
     "interface-name": false,
     "jsdoc-format": true,
     "label-position": true,
