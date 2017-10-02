@@ -9,7 +9,7 @@
     "lint:fix": "tslint --fix './src/**/*.ts'",
     "prebuild": "npm run clean && npm run lint:fix",
     "build": "tsc -p ./src/server",
-    "build:watch": "nodemon -e ts -w aeonian -x 'npm run build'",
+    "build:w": "npm run prebuild && tsc -w -p ./src/server",
     "start": "node dist/index.js",
     "test": "npm run lint"
   },
